@@ -53,8 +53,10 @@
 //! ```
 use std::process;
 use std::io;
+use std::fmt;
 use std::string::FromUtf8Error;
 use std::io::Write;
+use std::error;
 
 extern crate serde;
 extern crate serde_json;
@@ -90,6 +92,26 @@ impl From<serde_json::Error> for Error {
 impl From<FromUtf8Error> for Error {
     fn from(err: FromUtf8Error) -> Error {
         Error::Script(format!("UTF-8 Error: {}", err))
+    }
+}
+
+impl error::Error for Error {
+    fn description(&self) -> &str {
+        match *self {
+            Error::Io(ref err) => err.description(),
+            Error::Json(ref err) => err.description(),
+            Error::Script(..) => "script error",
+        }
+    }
+}
+
+impl fmt::Display for Error {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            Error::Io(ref err) => write!(f, "script io error: {}", err),
+            Error::Json(ref err) => write!(f, "script json error: {}", err),
+            Error::Script(ref msg) => write!(f, "script error: {}", msg),
+        }
     }
 }
 
