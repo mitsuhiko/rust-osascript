@@ -2,6 +2,12 @@
 name = "osascript"
 version = "0.1.0"
 authors = ["Armin Ronacher <armin.ronacher@active-4.com>"]
+keywords = ["applescript", "osascript", "javascript"]
+description = "Provides simplified access to JavaScript via OSA on macOS."
+homepage = "https://github.com/mitsuhiko/rust-osascript"
+documentation = "https://docs.rs/osascript/"
+license = "BSD-3-Clause"
+readme = "README.md"
 
 [dependencies]
 serde = "0.9"
