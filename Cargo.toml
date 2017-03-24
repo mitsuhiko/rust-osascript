@@ -1,0 +1,9 @@
+[package]
+name = "osascript"
+version = "0.1.0"
+authors = ["Armin Ronacher <armin.ronacher@active-4.com>"]
+
+[dependencies]
+serde = "0.9"
+serde_json = "0.9"
+serde_derive = "0.9"
