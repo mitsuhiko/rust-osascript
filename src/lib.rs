@@ -62,7 +62,8 @@ extern crate serde;
 extern crate serde_json;
 #[macro_use] extern crate serde_derive;
 
-use serde::{Serialize, Deserialize};
+use serde::Serialize;
+use serde::de::DeserializeOwned;
 
 /// The error from the script system
 #[derive(Debug)]
@@ -135,12 +136,12 @@ impl JavaScript {
     }
 
     /// Executes the script and does not pass any arguments.
-    pub fn execute<D: Deserialize>(&self) -> Result<D, Error> {
+    pub fn execute<'a, D: DeserializeOwned>(&self) -> Result<D, Error> {
         self.execute_with_params(EmptyParams {})
     }
 
     /// Executes the script and passes the provided arguments.
-    pub fn execute_with_params<S: Serialize, D: Deserialize>(&self, params: S)
+    pub fn execute_with_params<'a, S: Serialize, D: DeserializeOwned>(&self, params: S)
         -> Result<D, Error>
     {
         let wrapped_code = wrap_code(&self.code, params)?;

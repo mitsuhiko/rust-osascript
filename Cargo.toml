@@ -1,6 +1,6 @@
 [package]
 name = "osascript"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Armin Ronacher <armin.ronacher@active-4.com>"]
 keywords = ["applescript", "osascript", "javascript"]
 description = "Provides simplified access to JavaScript via OSA on macOS."
@@ -10,6 +10,6 @@ license = "BSD-3-Clause"
 readme = "README.md"
 
 [dependencies]
-serde = "0"
-serde_json = "0"
-serde_derive = "0"
+serde = "1"
+serde_json = "1"
+serde_derive = "1"
